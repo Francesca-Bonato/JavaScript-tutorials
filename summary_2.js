@@ -88,7 +88,7 @@ function firstOperation(num) {
 //the methods then() and catch() are used to handle the result of the promise:
 firstOperation(5)
   //handling the success case
-  .then(data => console.log('success:', data)) //then() takes a callback function that will be executed if the promise is fulfilled.
+  .then(data => console.log('Promise success:', data)) //then() takes a callback function that will be executed if the promise is fulfilled.
   //handling the error case
   .catch(error => console.error(error))         //catch() takes a callback function that will be executed if the promise is rejected.
 
@@ -129,6 +129,24 @@ async function checkPromises() {
 
 checkPromises();
 
+//(some) promise API:
+
+setTimeout(() => {
+  //Promise.all takes an array of promises and returns a single promise. It resolves with an array of values when all input promises resolve, 
+  //and rejects with the first error if any promise is rejected.
+  Promise.all([firstOperation(5), secondOperation(3)])
+  .then(data => console.log('the result of Promise.all is:', data))
+  .catch(err => console.error(new Error (err)));
+}, 1200);
+
+setTimeout(() => {
+  //Promise.race returns a promise that settles (either resolves or rejects) as soon as the first promise in an array of promises settles. 
+  //The result is determined by the first settled promise.
+  Promise.race([firstOperation(5), secondOperation(3)])
+  .then(data => console.log('the result of Promise.race is:',data))
+  .catch(err => console.error(new Error (err)));
+}, 4300);
+
 //ERROR HANDLING: 
 
 //1: Try/catch syntax. It's the method typically used with async/await.
@@ -139,7 +157,7 @@ async function checkPromisesWithErr() {
         let result2 = await secondOperation(result1);           
         console.log('async/await with error handling:', result1, result2);
     } catch(err) {                                  //The "catch" block catches any error thrown within the try block.
-        console.error(err);
+        console.error(new Error (err));
     } finally {                                     //the "finally" block is executed regardless of whether an error occurred or not.
         console.log("Do you understand asynchronous programming now?"); 
     }
@@ -164,7 +182,7 @@ function performOperation(callback) {
 
 performOperation((error, result) => {
     if (error) {
-        console.error('Caught an error: ', error);
+        console.error(new Error ('Caught an error: ', error));
     } else {
         console.log(`Callback-based error handling: ${result}`);
     }

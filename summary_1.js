@@ -267,7 +267,7 @@ console.log(numbers.find(number => number > 1))                     //returns 2
 numbers.forEach(number => console.log(number + "!"))                //returns 1! 2! 3!
 
 //map(): calls a specified callback function for each element of the array and returns an array that contains the results;
-//the callback function ccepts up to 3 parameters: (1) the value of the current element of the array, (2) its index, (3) a reference to the entire array.
+//the callback function accepts up to 3 parameters: (1) the value of the current element of the array, (2) its index, (3) a reference to the entire array.
 
 console.log(numbers.map(number => number + "!"))                    //returns ['1!', '2!', '3!']
 
@@ -282,7 +282,7 @@ console.log(numbers.some(number => number % 2 === 0))               //returns tr
 
 //every(): determines whether all elements of the array satisfy the specified condition. It returns true/false.
 
-console.log(numbers.every(umber => number % 2 === 0))               //returns false
+console.log(numbers.every(number => number % 2 === 0))               //returns false
 
 //includes(): determines whether an array includes a certain element. It returns true/false.
 
